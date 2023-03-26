@@ -17,9 +17,9 @@ body {
 	justify-content: center;
 	min-height: 100vh;
 	align-items: center;
-	background: url(Img/bg2.jpg) no-repeat;
-	background-size: cover;
-	background-position: center;
+	background: #293540;
+	overflow: hidden;
+	
 }
 
 
@@ -29,7 +29,7 @@ header{
 	left: 0;
 	width: 100%;
 	padding: 20px 100px;
-	background: #293240;
+	background: transparent;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -41,7 +41,7 @@ header{
 	width: 350px;
 	height: 400px;
 	background: transparent;
-	border: 2px solid rgba(0, 255, 255, .5);
+	border: 1px solid rgba(0, 255, 255, .5);
 	border-radius: 20px;
 	-webkit-backdrop-filter: blur(30px);
 	backdrop-filter: blur(30px);
@@ -49,10 +49,22 @@ header{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
+	transition: height .2s ease;
+	overflow: hidden;
+	transform: scale(0);
+	transition: .2s;
 }
 
-.wrapper .login-box{
+.wrapper.btnLoginPopup{
+	transform: scale(1);
+}
+
+.wrapper.active {
+	height: 480px;
+}
+
+.login-box{
+	position: absolute;
 	color: #0F2232;
 	width: 100%;
 	height: 100%;
@@ -60,9 +72,38 @@ header{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	transition: .2s;
 }
 
-.login-box h2{
+.wrapper.active .login-box{
+	transition: .2s;
+	transform: translateX(-400px);
+}
+
+.wrapper.active .register-box {
+	transition: .2s;
+	transform: translateX(0px);	
+}
+
+.register-box{
+	position: absolute;
+	color: #0F2232;
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	transform: translate(400px);
+	transition: .2s;
+}
+
+.wrapper .register-box form{
+	position: relative;
+}
+
+.wrapper h2{
 	font-size: 2em;
 	text-align: center;
 }
@@ -108,6 +149,7 @@ header{
 	right: 8px;
 	line-height: 44px;
 	font-size: 1.2em;
+	z-index: 1;
 }
 
 .btn{
@@ -122,6 +164,7 @@ header{
 	color: #FFFFFF;
 	font-weight: 600;
 }
+
 
 .btn:hover {
 	box-shadow: 0 0 7px rgba(0, 0, 0, .5)
@@ -159,6 +202,7 @@ header{
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	z-index: 1;
 }
 
 .logo{
@@ -199,7 +243,7 @@ header{
 	background: transparent;
 	border: 2px solid #FFFFFF;
 	outline: none;
-	border-radius: 6px;
+	border-radius: 20px;
 	cursor: pointer;
 	font-size: 1.1em;
 	color: #FFFFFF;
@@ -211,4 +255,20 @@ header{
 .navigation .btnLoginPopup:hover{
 	background: #FFFFFF;
 	color: #293240;
+}
+
+.blob{
+	position: absolute;
+	width: 600px;
+	height: 600px;
+	background: linear-gradient(305deg, rgba(137, 139, 141, .42) 31.77%, red 100%);
+	border-radius: 21% 79% 79% 21% / 21% 23% 77% 79% ;
+	animation: animateBlob 90s infinite alternate;
+}
+
+@keyframes animateBlob {
+	100% {
+		transform: translate(100px, 100px) rotate(360deg);
+		border-radius: 77% 23% 17% 83% / 84% 87% 13% 16% ;
+	}
 }
